@@ -21,7 +21,14 @@ export class EstudanteService {
       catchError(this.trataErro)
       );
   }
-
+  getEstudante(id: string): Observable<IEstudante> {
+    const url = `${this.estudanteUrl}/${id}`;
+    return this.http.get<IEstudante>(url)
+      .pipe(
+        tap(dado => console.log('Estudante: ' + JSON.stringify(dado))),
+        catchError(this.trataErro)
+      );
+  }
   private trataErro(erro: HttpErrorResponse) {
     let mensagemErro = '';
     if (erro.error instanceof ErrorEvent) {
