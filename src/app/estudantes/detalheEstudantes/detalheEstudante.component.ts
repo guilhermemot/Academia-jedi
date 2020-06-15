@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IEstudante } from '../estudantes';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EstudanteService } from '../estudante.service';
+import { EstudanteService } from '../estudantes.service';
 
 @Component({
   templateUrl: './estudante-detalhe.component.html',

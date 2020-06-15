@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IEstudante } from './estudantes';
-import { EstudanteService } from './estudante.service';
+import { EstudanteService } from './estudantes.service';
 
 @Component({
     selector: 'jedi-estudantes',

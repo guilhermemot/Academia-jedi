@@ -1,11 +1,11 @@
-import { ListaEstudantesComponent } from './estudantes/lista-estudantes.component';
+import { ListaEstudantesComponent } from './estudantes/listaEstudantes.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { EstudanteDetalheComponent } from './estudantes/estudante-detalhe/estudante-detalhe.component';
-import { BemVindoComponent } from './home/bem-vindo/bem-vindo.component';
+import { EstudanteDetalheComponent } from './estudantes/detalheEstudantes/detalheEstudante.component';
+import { BemVindoComponent } from './home/bemVindo/bemVindo.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

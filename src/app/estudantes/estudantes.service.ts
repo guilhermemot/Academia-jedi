@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IEstudante } from './estudantes';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 
 @Injectable(
     {
@@ -38,6 +38,33 @@ export class EstudanteService {
     }
     console.error(mensagemErro);
     return throwError(mensagemErro);
-
+    }
+    deletarEstudante(id: number): Observable<{}> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const url = `${this.estudanteUrl}/${id}`;
+      return this.http.delete<IEstudante>(url, { headers })
+        .pipe(
+          tap(data => console.log('deletarEstudante: ' + id)),
+          catchError(this.trataErro)
+        );
+    }
+    atualizarEstudante(estudante: IEstudante): Observable<IEstudante> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const url = `${this.estudanteUrl}/atualiza/${estudante.id}`;
+      return this.http.put<IEstudante>(url, estudante, { headers })
+        .pipe(
+          tap(() => console.log('atualizarEstudante: ' + estudante.id)),
+          map(() => estudante),
+          catchError(this.trataErro)
+        );
+    }
+    criarEstudante(estudante: IEstudante): Observable<IEstudante> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      estudante.id = null;
+      return this.http.post<IEstudante>(this.estudanteUrl + "/novo", estudante, { headers })
+        .pipe(
+          tap(data => console.log('criarEstudante: ' + JSON.stringify(data))),
+          catchError(this.trataErro)
+        );
     }
 }

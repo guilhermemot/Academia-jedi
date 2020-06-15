@@ -1,5 +1,6 @@
 export interface IEstudante {
-    id: string;
+    [x: string]: any;
+    id: number;
     nome: string;
     altura: number;
     peso: string;
